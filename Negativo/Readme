@@ -1,0 +1,34 @@
+# Negativo
+
+#### Programa fornecido pelo professor
+
+> Este programa pega uma imagem no formato pgm(formato
+> texto para imagens, e o qual utilizamos na disciplina)
+> e a tranforma em uma imagem com efeito negativo!
+
+## Como Utilizar
+
+- Basta abrir um terminal na pasta 'Negativo'
+- Como Executar (copiar e colar)
+
+```sh
+ -> make
+ -> ./negativo <nome_da_imagem>.pgm
+```
+
+- Utilizamos o visualizador de imagens eog(Linux)
+- Caso não o tenha basta abrir um terminal e Executar
+
+```sh
+sudo apt-get update
+sudo apt-get install -y eog
+```
+
+- Visualizar imagem
+
+```sh
+eog negativo.pgm
+```
+
+> Pronto, a saída desse programa é uma imagem
+> com efeito Negativo
