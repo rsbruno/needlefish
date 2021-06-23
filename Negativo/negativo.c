@@ -209,9 +209,9 @@ int main(int argc, char *argv[]) {
             strcpy(nome, "negativo.pgm");
             //strcat(nome, "-negativo.pgm");
             grava_imagem_pgm(Out, nome, nl, nc, mn);
-            strcpy(comando, "./i_view32 ");
+            strcpy(comando, "eog ");
             strcat(comando, nome);
-            strcat(comando, " /hide=7");
+            //strcat(comando, " /hide=7");
             // system ("./i_view32 inverte.pgm /hide=7");
             system(comando);
             desaloca_memo(&In);
