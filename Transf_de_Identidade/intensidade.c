@@ -13,17 +13,32 @@ void transform(image In, image Out, int nl, int nc, int mn)
 {
     //  *  CLAREAR OU ESCURECER USANDO POTÊNCIA
     /*  
+     
      *  O que define se estamos escurencendo ou clareando é variável nível
      *  se um inteiro escurece, se um ponto flutuante de 0 e 1 clareia
+     
+        int i;
+        double nivel = .2;
+        double T[mn + 1]; // escala de Transformação
+
+        //  Gera a escala de transformação
+        for (i = 0; i < mn + 1; i++)
+            T[i] = pow(i, nivel) / pow(mn, nivel) * mn;
+
+        //  Percorre toda a matriz de saída pegando o número na escala de transformação
+        for (i = 0; i < nl * nc; i++)
+            Out[i] = (int)T[In[i]];
+    
     */
 
+    //  * CLAREAR USANDO LOG
     int i;
-    double nivel = .2;
+    double nivel = 1;
     double T[mn + 1]; // escala de Transformação
 
     //  Gera a escala de transformação
     for (i = 0; i < mn + 1; i++)
-        T[i] = pow(i, nivel) / pow(mn, nivel) * mn;
+        T[i] = log(i + nivel) / log(mn + nivel) * mn;
 
     //  Percorre toda a matriz de saída pegando o número na escala de transformação
     for (i = 0; i < nl * nc; i++)
