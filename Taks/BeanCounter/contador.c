@@ -23,47 +23,37 @@ void msg(char *s)
  *-------------------------------------------------------------------------*/
 int main(int argc, char *argv[])
 {
-    int OK, nc, nr, ml, rotulo = 0, counter = 0;
+    int nc, nr, ml, rotulo = 0;
 
-    int r, t, p;
-    char name[100];
-    char command[110];
-    image In, Out;
+    int r, t;
+    image In;
     if (argc < 2)
         msg(argv[0]);
 
     In = img_readpgm(argv[1], &nr, &nc, &ml);
 
-    int branco = 0;
+    //Digo ao algoritmo qual a tonalidade é branco
+    int white = 0;
 
     for (int i = 0; i < nr * nc; i++)
-    {
-        if (In[i] != branco)
+        if (In[i] != white)
         {
-            p = In[i];
             r = In[i - nc];
             t = In[i - 1];
 
-            if (t == branco && r == branco)
+            if (t == white && r == white)
             {
                 In[i] = --rotulo;
                 insertFirst(In[i], 0);
             }
-            if (t != branco && r == branco)
-            {
+            else if (t != white && r == white)
                 In[i] = t;
-            }
-            if (t == branco && r != branco)
-            {
+            else if (t == white && r != white)
                 In[i] = r;
-            }
-            if (t != branco && r != branco)
+            else
             {
-
                 if (t == r)
-                {
                     In[i] = r;
-                }
                 else
                 {
                     In[i] = t;
@@ -71,19 +61,14 @@ int main(int argc, char *argv[])
                 }
             }
         }
-    }
-
     for (int i = 0; i < nc * nr; i++)
     {
         if (i % 20 == 0)
             printf("\n");
         printf("%4d", In[i]);
     }
-    printList();
+    //printList();
     printf("\n%d elementos\n", length());
-
-
-
 
     // //print_list(list_eqvl->list);
     // printf("%d", list_eqvl->count);
