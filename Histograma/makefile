@@ -12,7 +12,7 @@ all: $(TARGET)
 $(TARGET): $(OBJECTS);\
     $(CC) -g -o $@ $^ $(LDFLAGS);\
     ./$(TARGET) $(IMG);\
-    #eog saida.pgm
+    eog saida.pgm
 
 %.o: %.c %.h;\
     $(CC) $(CCFLAGS) -c $<

@@ -11,44 +11,41 @@
 void histograma(image In, int *histo, int nl, int nc, int mn)
 {
     int i;
-    for (i = 0; i < mn; i++)
+    for (i = 0; i <= mn; i++)
         histo[i] = 0;
-    for (i = 0; i < nl * nc; i++)
+    for (i = 0; i <= nl * nc; i++)
         histo[In[i]]++;
 }
 
 void mostra(int *histo, int mn)
 {
-    for (int i = 0; i < mn; i++)
+    for (int i = 0; i <= mn; i++)
         printf("h[%3d] = %d ", i, histo[i]);
 }
 
 void equaliza(image In, image Out, int *histo, int nl, int nc, int mn)
 {
-    float pk[mn + 1];
-    float ak[mn + 1];
+    float pk[mn + 1], ak[mn + 1];
     int sk[mn + 1];
 
-    //CÁLCULO DE PROBABILIDADE
-    for (int i = 0; i < mn; i++)
+    for (int i = 1; i <= mn; i++)
+    {
+        //CÁLCULO DE PROBABILIDADE
         pk[i] = (float)histo[i] / (nl * nc);
-    //CÁLCULO DO ACUMULADOR DE PROBABILIDADE
-    ak[0] = pk[0];
-    for (int i = 1; i < mn; i++)
-        ak[i] = ak[i - 1] + pk[i];
-
-    //RESULTADO DA EQUALIZAÇÃO
-    for (int i = 0; i < mn; i++)
+        //CÁLCULO DO ACUMULADOR DE PROBABILIDADE
+        i == 0 ? (ak[0] = pk[0]) : (ak[i] = ak[i - 1] + pk[i]);
+        //RESULTADO DA EQUALIZAÇÃO
         sk[i] = ak[i] * mn;
+    }
 
     //CONSTRUINDO A IMAGEM DE SAÍDA
-    for (int i = 0; i < nl * nc; i++)
+    for (int i = 0; i <= nl * nc; i++)
         Out[i] = sk[In[i]];
 }
 
 void msg(char *s)
 {
-    printf("\nImage Mediana");
+    printf("Histograma");
     printf("\n-------------------------------");
     printf("\nUsage:  %s  <IMG.PGM>\n\n", s);
     printf("    <IMG.PGM> is pgm image file \n\n");
@@ -74,7 +71,6 @@ int main(int argc, char *argv[])
     histo = (int *)malloc(sizeof(int) * ml);
     Out = img_alloc(nr, nc);
 
-    /*-- transformation --*/
     histograma(In, histo, nr, nc, ml);
     //mostra(histo, ml);
     equaliza(In, Out, histo, nr, nc, ml);
