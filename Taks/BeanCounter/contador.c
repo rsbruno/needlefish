@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include "imagelib.h"
 #include "equivalencia.h"
+#include "thresholding.h"
 
 void msg(char *s)
 {
@@ -30,10 +31,11 @@ int main(int argc, char *argv[])
     if (argc < 2)
         msg(argv[0]);
 
-    In = img_readpgm(argv[1], &nr, &nc, &ml);
+    //Quando faço a leitura da Imagem ja transformo em preto e branco
+    In = thresholding(img_readpgm(argv[1], &nr, &nc, &ml), nr, nc, ml);
 
     //Digo ao algoritmo qual a tonalidade é branco
-    int white = 0;
+    int white = 255;
 
     for (int i = 0; i < nr * nc; i++)
         if (In[i] != white)
@@ -61,13 +63,14 @@ int main(int argc, char *argv[])
                 }
             }
         }
-    for (int i = 0; i < nc * nr; i++)
-    {
-        if (i % 20 == 0)
-            printf("\n");
-        printf("%4d", In[i]);
-    }
+    // for (int i = 0; i < nc * nr; i++)
+    // {
+    //     if (i % 20 == 0)
+    //         printf("\n");
+    //     printf("%4d", In[i]);
+    // }
     //printList();
+    
     printf("\n%d elementos\n", length());
 
     // //print_list(list_eqvl->list);
