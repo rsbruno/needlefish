@@ -1,8 +1,12 @@
-/*-------------------------------------------------------------------------
- * Image Processing using C-Ansi
- *   Program: Mediana from grayscale image
- * By Luiz Eduardo da Silva.
- *-------------------------------------------------------------------------*/
+/*−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
+2 ∗         UNIFAL − Universidade Federal de Alfenas.
+3 ∗           BACHARELADO EM CIENCIA DA COMPUTACAO.
+4 ∗ Trabalho..: Rotulacao de componentes conexos.
+5 ∗ Disciplina: Processamento de Imagens
+6 ∗ Professor.: Luiz Eduardo da Silva
+7 ∗ Aluno .....: Bruno Roberto Santos
+8 ∗ Data . . . . . . : 08/07/2021
+9 ∗−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,9 +23,6 @@ void msg(char *s)
     exit(1);
 }
 
-/*-------------------------------------------------------------------------
- * main function
- *-------------------------------------------------------------------------*/
 int main(int argc, char *argv[])
 {
     int nc, nr, ml, rotulo = 0;
@@ -63,33 +64,11 @@ int main(int argc, char *argv[])
                 }
             }
         }
-    // for (int i = 0; i < nc * nr; i++)
-    // {
-    //     if (i % 20 == 0)
-    //         printf("\n");
-    //     printf("%4d", In[i]);
-    // }
-    //printList();
-    
-    printf("\n%d elementos\n", length());
 
-    // //print_list(list_eqvl->list);
-    // printf("%d", list_eqvl->count);
-
-    //printf("\nImage Mediana");
-    //img_info(argv[1], nr, nc, ml);
-    //Out = img_alloc(nr, nc);
-
-    /*-- transformation --*/
-    //counter(In, Out, nr, nc, ml);
-
-    //printf("nivel max %d", ml);
-
-    //sprintf(name, "%s-%s", argv[1], "Mediana.pgm");
-    //img_writepgm(Out, "saida.pgm", nr, nc, ml);
-    // sprintf(command, "%s %s &", VIEW, name);
-    // system(command);
-    //img_free(In);
-    // img_free(Out);
+    printf("\nContador de Componentes Conexos");
+    printf("\nArquivo %s", argv[1]);
+    printf("\n-------------------------------\n");
+    printf("\n#componentes = %d\n\n", length());
+    img_free(In);
     return 0;
 }

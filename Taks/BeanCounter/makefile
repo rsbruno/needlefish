@@ -1,5 +1,5 @@
-compila:;\
-    gcc *.c -o contador;\
+rotula: imagelib.c thresholding.c equivalencia.c rotula.c ; \
+        gcc imagelib.c thresholding.c equivalencia.c rotula.c -o rotula
 
-limpa:;\
-    rm -f *.o contador saida.pgm $(TARGET);\
+limpa : ; \
+   rm −f rotula*~\
