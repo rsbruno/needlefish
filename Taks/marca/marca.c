@@ -1,8 +1,12 @@
-/*-------------------------------------------------------------------------
- * Image Processing using C-Ansi
- *   Program: waterMark from grayscale image
- * By Luiz Eduardo da Silva.
- *-------------------------------------------------------------------------*/
+/*−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
+2 * UNIFAL − Universidade Federal de Alfenas.
+3 * BACHARELADO EM CIENCIA DA COMPUTACAO.
+4 * Trabalho . . : Marca D’ agua invisivel
+5 * Disciplina . : Processamento de Imagens
+6 * Professor. . : Luiz Eduardo da Silva
+7 * Aluno . .  . : Bruno Roberto Santos
+8 * Data  . .  . : 27/07/2021
+9 *−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -51,8 +55,8 @@ int main(int argc, char *argv[])
     if (argc < 2)
         msg(argv[0]);
 
-    In = img_readpgm(argv[1], &nr, &nc, &ml);
-    Original = img_readpgm(argv[2], &nc_org, &nr_org, &ml_org);
+    In = img_readpgm(argv[2], &nr, &nc, &ml);
+    Original = img_readpgm(argv[1], &nc_org, &nr_org, &ml_org);
     //Mark = img_readpgm("minhamarca.pgm", &nc_mk, &nr_mk, &ml_mk);
 
     printf("\nWaterMark");
