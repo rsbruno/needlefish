@@ -1,9 +1,12 @@
-/*----------------------------------------------------
- * PROCESSAMENTO DE IMAGEM
- *  Imagens binárias - Morfologia Matemática
- *  Reconstrucao Geodesica
- *  Luiz Eduardo da Silva
- *----------------------------------------------------*/
+/*−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
+    ∗ UNIFAL − Universidade Federal de Alfenas.
+    ∗ BACHARELADO EM CIENCIA DA COMPUTACAO.
+    ∗ Trabalho  . . .  : Reconstrucao Geodesica
+    ∗ Disciplina. . .  : Processamento de Imagens
+    ∗ Professor . . .  : Luiz Eduardo da Silva
+    ∗ Aluno . . . . .  : Burno Roberto Santos
+    ∗ Data  . . . . .  : 12/08/2021
+∗−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−*/
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -173,13 +176,13 @@ void msg(char *s)
     exit(10);
 }
 
-coodinates read_coodinates()
+coodinates read_coodinates(char *file_name)
 {
     int i = 0;
     char line[100];
     image Img;
     FILE *arq;
-    if (!(arq = fopen("marcas.txt", "r")))
+    if (!(arq = fopen(file_name, "r")))
         error("Erro na ABERTURA do arquivo de marcação\n\n");
     fgets(line, 90, arq);
 
@@ -223,7 +226,7 @@ int main(int argc, char *argv[])
     info_image(argv[1], nl, nc);
 
     //leitura do arquivo de coordenadas
-    Coods = read_coodinates();
+    Coods = read_coodinates(argv[2]);
     //na reconstrução agr eu preciso passar as cordenas
     Out = reconstrucao(In, Coods, nl, nc);
 
