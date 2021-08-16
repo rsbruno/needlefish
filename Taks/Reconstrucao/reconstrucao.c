@@ -97,7 +97,6 @@ void write_pbm(image Img, char *name, int nl, int nc)
 void erosao1(image In, image Out, coodinates Coods, int nl, int nc)
 {
     int i, j, y, x, min;
-
     for (int a = 0; a < size; a = a+2)
     {
         //Passo as coordenadas onde está o elemento a ser reconstuído
@@ -176,7 +175,6 @@ void msg(char *s)
 
 coodinates read_coodinates()
 {
-
     int i = 0;
     char line[100];
     image Img;
@@ -224,7 +222,9 @@ int main(int argc, char *argv[])
     printf("\nMorfologia Matemática");
     info_image(argv[1], nl, nc);
 
+    //leitura do arquivo de coordenadas
     Coods = read_coodinates();
+    //na reconstrução agr eu preciso passar as cordenas
     Out = reconstrucao(In, Coods, nl, nc);
 
     sprintf(name, "%s-%s", argv[1], "reconstrucao.pbm");
