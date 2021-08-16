@@ -14,6 +14,8 @@ typedef unsigned char *image;
 
 typedef unsigned int *coodinates;
 
+int size = 0;
+
 image alloc_memo(int nl, int nc)
 {
     return (image)malloc(nl * nc * sizeof(char));
@@ -96,10 +98,13 @@ void erosao1(image In, image Out, coodinates Coods, int nl, int nc)
 {
     int i, j, y, x, min;
 
-    for (int a = 0; a < 32; a = a+2)
+    for (int a = 0; a < size; a = a+2)
     {
+        //Passo as coordenadas onde está o elemento a ser reconstuído
         i = Coods[a];
         j = Coods[a+1];
+
+        //Faz a marcação da mascára na posição onde o elemento está
         min = 1000;
         for (y = -2; y <= 2; y++)
         {
@@ -172,24 +177,25 @@ void msg(char *s)
 coodinates read_coodinates()
 {
 
-    int i = 0, size;
-    int *x, *y;
+    int i = 0;
     char line[100];
     image Img;
     FILE *arq;
     if (!(arq = fopen("marcas.txt", "r")))
-        error("Erro na ABERTURA do arquivo\n\n");
+        error("Erro na ABERTURA do arquivo de marcação\n\n");
     fgets(line, 90, arq);
-    size = atoi(line);
+
+    //Tendo a quantidae de pares multiplico por dois para ter um array completo
+    size = 2 * (atoi(line));
 
     coodinates coods;
 
+    //alocação do array de coodenadas
     coods = (coodinates)malloc(size * sizeof(int));
 
     while (fgets(line, sizeof(line), arq))
     {
         char *cood = strtok(line, " ");
-        // loop through the string to extract all other coods
         while (cood != NULL)
         {
             coods[i] = atoi(cood);
