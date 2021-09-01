@@ -173,12 +173,13 @@ void code(int n, int p, char *str)
  *--------------------------------------------------------------*/
 void drawLinks(FILE *dot, int root)
 {
+    char letters [8] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
     if (root != -1)
     {
         int hasLeft = node[root].left != -1;
         int hasRight = node[root].right != -1;
         if (!hasLeft && !hasRight) // folha
-            fprintf(dot, "\tn%d [shape = record, label=\"px=%d|fq=%d\", color=RED]\n", root, root, node[root].freq);
+            fprintf(dot, "\tn%d [shape = record, label=\"%c | fq = %d\", color=RED]\n", root, letters[root], node[root].freq);
         else
             fprintf(dot, "\tn%d [shape = circle, label=\"%d\"]\n", root, node[root].freq);
         drawLinks(dot, node[root].left);
@@ -235,7 +236,7 @@ void displayCalcs(int *h, int n, int root)
     printf("\nTotal de bits (original) = %d. Aprox. %d bytes\n\n", soma, bytes);
 }
 
-void huf_tree(int *h, int mn, int dot)
+int huf_tree(int *h, int mn, int dot)
 {
     char str[110];
     int root = buildTree(h, mn - 1);
@@ -243,10 +244,11 @@ void huf_tree(int *h, int mn, int dot)
     if (dot)
     {
         createDot(root);
-        system("dot -Tpng tree.dot -o tree.png");
-        sprintf(str, "%s tree.png &", "eog");
-        system(str);
+        // system("dot -Tpng tree.dot -o tree.png");
+        // sprintf(str, "%s tree.png &", "eog");
+        // system(str);
     }
+    return root;
 }
 
 /*--------------------------------------------------------------
@@ -264,6 +266,10 @@ int main(void)
         scanf("%d", h + i);
 
     // Calcula a arvore de huffman
-    huf_tree(h, n, 1);
+    int a = huf_tree(h, n, 1);
+
+    printf("%d",a);
+
+
     return 0;
 }

@@ -297,8 +297,8 @@ int main()
     //char arr[] = { 'A', 'B', 'C', 'D'};
 	// int freq[] = { 22, 17, 2, 1};
 
-	char arr[] = { 'a', 'b', 'c', 'd', 'e' };
-	int freq[] = { 3, 4, 9, 3, 2};
+	char arr[] = { 'a', 'b', 'c', 'd'};
+	int freq[] = { 22, 17, 2, 1};
 
 	int size = sizeof(arr) / sizeof(arr[0]);
 
