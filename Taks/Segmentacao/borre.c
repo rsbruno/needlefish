@@ -74,12 +74,12 @@ int main(int argc, char *argv[])
     img_free(Grd);
 
     int Msk_nl, Msk_nc, Msk_mn;
-    Mask = img_readpgm(name, &Msk_nl, &Msk_nc, &Msk_mn);
+    Mask = img_readpgm("_mask1.pgm", &Msk_nl, &Msk_nc, &Msk_mn);
 
     desfoque(In, Mask, Out, nl, nc, mn);
 
-    sprintf(name, "_notebook.ppm");
-    img_writeppm(Out, name, nl, nc, mn);
+    sprintf(name, "saida.ppm");
+    img_writeppm(In, name, nl, nc, mn);
 
     // sprintf(command, "%s %s &", VIEW, name);
     // system(command);
